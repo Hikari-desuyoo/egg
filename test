@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -xe
+
+./gradlew jar
+MODS_FOLDER=~/.local/share/Mindustry/mods
+cp ./build/libs/eggDesktop.jar ${MODS_FOLDER}
+cd ~/mindustry/
+./Mindustry
