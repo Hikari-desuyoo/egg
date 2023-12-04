@@ -5,19 +5,18 @@ import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
+import mindustry.world.blocks.production.GenericCrafter;
+
 import static mindustry.type.ItemStack.*;
 
 import egg.world.blocks.production.*;
+import egg.world.blocks.projector.AirPurifier;
 import mindustry.world.draw.*;
+import mindustry.world.meta.BuildVisibility;
 
 public class EggBlocks {
-    public static Block
-
-    // crafting
-    grainFilter,
-
-    // units
-    incubator;
+    public static Block grainFilter, incubator;
+    public static AirPurifier airPurifier;
 
     public static void load() {
         grainFilter = new SurpriseCrafter("grain-filter") {
@@ -43,6 +42,17 @@ public class EggBlocks {
         incubator = new Incubator("incubator") {
             {
                 consumePower(1.2f);
+            }
+        };
+
+        airPurifier = new AirPurifier("air-purifier") {
+            {
+                requirements(Category.units, with(Items.copper, 30, Items.lead, 25));
+                size = 2;
+                buildVisibility = BuildVisibility.shown;
+                solid = true;
+                radius = 50f;
+                consumePower(5);
             }
         };
     }

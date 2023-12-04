@@ -7,7 +7,6 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
-import arc.util.Log;
 import egg.content.EggItems;
 import mindustry.Vars;
 import mindustry.type.Category;
@@ -49,7 +48,6 @@ public class Incubator extends UnitBlock {
 
         @Override
         public void updateTile(){
-            super.updateTile();
             eggFadeIn = Mathf.approachDelta(eggFadeIn, items.total(), 0.2f);
             heat = Mathf.approachDelta(heat, warmup(), 0.02f);
         }
@@ -68,7 +66,6 @@ public class Incubator extends UnitBlock {
 
             Draw.rect(base, build.x, build.y);
             if (build.items.has(EggItems.egg)) {
-                Log.info(build.eggFadeIn);
                 float intensity = 1 - (Mathf.absin(build.totalProgress(), glowScale, glow.alpha) * glowIntensity + 1f - glowIntensity) * build.warmup() * glow.alpha;
                 Draw.color(new Color(intensity, intensity, intensity, build.eggFadeIn));
                 Draw.rect(eggTexture, build.x, build.y, Vars.itemSize, Vars.itemSize);
